@@ -21,6 +21,10 @@ import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InteralStateType } from './app.service';
 
+import { Angulartics2 } from 'angulartics2/src/core/angulartics2';
+import { Angulartics2On } from 'angulartics2/src/core/angulartics2On';
+import { Angulartics2GoogleAnalytics } from 'angulartics2/src/providers/angulartics2-google-analytics';
+
 import { MenuModule } from './menu';
 import { PageLoader } from './page-loader';
 import { PAGE_SERVICE_PROVIDERS, MENU_SERVICE_PROVIDERS } from './services';
@@ -48,6 +52,7 @@ type StoreType = {
   declarations: [
     App,
     PageLoader,
+    Angulartics2On,
     // Home,
     Page,
     Error,
@@ -70,7 +75,9 @@ type StoreType = {
         position: 'left'
       })
     }),
-    MenuModule
+    MenuModule,
+    Angulartics2,
+    Angulartics2GoogleAnalytics
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
