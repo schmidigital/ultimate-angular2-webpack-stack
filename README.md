@@ -23,3 +23,8 @@ Noch paar coole Sachen
 ```
 npm i --save angulartics2 font-awesome slick-carousel
 ```
+
+Was brauchen wir noch?
+Wordpress PageLoader
+SD-Menu
+Templates
