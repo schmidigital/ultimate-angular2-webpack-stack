@@ -76,6 +76,7 @@
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^2.0.0-beta.3",
     "@ngrx/store": "^2.2.1",
+    "angulartics2": "^1.1.9",
     "assets-webpack-plugin": "^3.4.0",
     "bootstrap": "^4.0.0-alpha.2",
     "bootstrap-loader": "^1.1.0",
