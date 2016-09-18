@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../../services/config.service'
 import { MenuService, MENU_SERVICE_PROVIDERS } from '../../services/menu.service'
+import { Store } from '@ngrx/store';
+import { MenuAction } from '../menu.action';
 
 @Component ({
   selector: 'sd-sidebar',
@@ -18,8 +20,12 @@ export class Sidebar {
     menuItems: any[];
     @Output() change = new EventEmitter();
 
-    constructor(private ms: MenuService, public config: ConfigService, 
-                private location: Location){
+    constructor(private ms: MenuService,
+                public config: ConfigService,
+                private location: Location,
+                private store: Store<any>,
+                private menuAction: MenuAction
+                ) {
       ms.getMenu('primary', '').subscribe(
         menu => {
           menu.items.map(function(item) {
@@ -31,5 +37,9 @@ export class Sidebar {
           this.menuItems = menu.items;
         }
       );
+    }
+
+    closeMenu() {
+      this.store.dispatch(this.menuAction.toggleMenu());
     }
 }

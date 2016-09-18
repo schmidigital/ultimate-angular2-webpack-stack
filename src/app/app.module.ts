@@ -24,6 +24,7 @@ import { AppState, InteralStateType } from './app.service';
 import { MenuModule } from './menu';
 import { PageLoader } from './page-loader';
 import { PAGE_SERVICE_PROVIDERS, MENU_SERVICE_PROVIDERS } from './services';
+import { Error, Page } from './pages';
 // import { Home, Page } from './pages';
 // import { Footer } from './layout';
 
@@ -48,12 +49,13 @@ type StoreType = {
     App,
     PageLoader,
     // Home,
-    // Page,
-    // Footer
+    Page,
+    Error,
   ],
   entryComponents: [
     // Home,
-    // Page
+    Page,
+    Error
   ],
   imports: [ // import Angular's modules
     BrowserModule,

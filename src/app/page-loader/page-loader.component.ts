@@ -11,14 +11,17 @@ import { Subscription } from 'rxjs';
 import { ConfigService, PageService } from '../services';
 
 // import { Home, Page } from '../pages';
-import { Error } from '../pages';
+import { Error, Page } from '../pages';
 import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
 
 @Component({
   selector: 'pageLoader',
   template: '<div id="content-wrapper"><div #content></div></div>',
-  styles: [
-    '#content-wrapper { min-height: 600px }'
+  styles: [`
+    #content-wrapper { 
+      position: relative; 
+      min-height: 600px 
+    }`
   ],
   animations: [
       trigger('routeAnimation', [
@@ -39,7 +42,7 @@ import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
 
 export class PageLoader implements OnInit, OnDestroy {
   pageSubscription: Subscription;
-  page: any;
+  data: any;
   template: string;
   componentReference: ComponentRef<any>;
   private isViewInitialized = false;
@@ -63,29 +66,27 @@ export class PageLoader implements OnInit, OnDestroy {
       url = urlArray.join('/');
 
       this.pageSubscription = this.ps.getPageBySlug(url).subscribe(
-        page => {
-          if (page) {
-            this.page = page;
+        data => {
+          if (data) {
+            this.data =data;
 
-            console.log('page ===> ' , page );
-
-            if (page.acf.services) {
-              page.acf.services.map((item) => {
+            if (data.acf.services) {
+              data.acf.services.map((item) => {
                 item.link = item.link.slice(this.config.api.length);
               });
             }
 
-            this.template = page.acf.template;
+            this.template = data.acf.template;
 
             switch (this.template) {
               // case 'home': this.loadComponent(Home); break;
               // case 'page': this.loadComponent(Page); break;
-              default: this.loadComponent(Error); break;
+              default: this.loadComponent(Page); break;
             }
 
             // SEO
-            this.title.setTitle(page.post_title + ' - ' + this.config.title);
-            this.setMeta('description', 'content', page.acf.meta_description);
+            this.title.setTitle(data.post_title + ' - ' + this.config.title);
+            this.setMeta('description', 'content', data.acf.meta_description);
 
           } else {
             this.template = '404';
@@ -116,6 +117,6 @@ export class PageLoader implements OnInit, OnDestroy {
 
     let componentFactory = this.resolver.resolveComponentFactory(component);
     this.componentReference = this.content.createComponent(componentFactory);
-    this.componentReference.instance.page = this.page;
+    this.componentReference.instance.data = this.data;
   }
 }

@@ -2,8 +2,8 @@
 <div class="nav-wrap row">
     <ul>
         <li>
-            <a *ngFor="let item of menuItems" [routerLink]="[item.url]" class="nav-link" [innerHtml]="item.title"></a>
+            <a *ngFor="let item of menuItems" (click)="closeMenu()" [routerLink]="[item.url]" class="nav-link" [innerHtml]="item.title"></a>
         </li>
     </ul>
-    <img class="menu-logo" src="/assets/img/startseite/cupcake-footer.png">
+    <img class="menu-logo" src="https://lh4.googleusercontent.com/-e9VmS8pTBR0/AAAAAAAAAAI/AAAAAAAAADs/6lxAK8q_puw/s120-c/photo.jpg">
 </div>

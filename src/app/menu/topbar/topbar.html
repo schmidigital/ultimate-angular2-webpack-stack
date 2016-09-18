@@ -1,38 +1,22 @@
 <div class="nav-container">
-    {{ scroll$ }}
     <!-- Mobile Menu -->
-    <nav class="hidden-md-up navbar bg-faded navbar-fixed-top">
-        <a class="navbar-brand" href="#">
-            <img src="assets/img/startseite/ornament-cupcake.png"/>
+    <nav [@slideInOut]="'in'" *ngIf="!(navHidden$ | async)" class="navbar navbar-default bg-faded navbar-fixed-top">
+        <a class="navbar-brand" [routerLink]="['']">
+            Your Company
         </a>
-        <ul class="nav navbar-nav pull-left">
-            <li class="nav-item pull-left">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
 
-        <button (click)="toggleMenu()" class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="nav navbar-nav pull-left">
+            <!--<span class="nav-item" *ngFor="let item of menuItems; let i = index">
+                <a [routerLink]="[item.url]" class="w-nav-link nav-link" [innerHtml]="item.title"></a>
+            </span>-->
+        </div>
+
+        <button class="navbar-toggler pull-xs-right" (click)="toggleMenu()" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
             &#9776;
         </button>
     </nav>
 
     <!-- Desktop Menu -->
     <nav class="hidden-sm-down">
-        <img class="nav-bg" src="/assets/img/startseite/nav-bg.png"/>
-        <div class="nav-wrap row">
-            <div class="text-xs-right col-sm-5">
-                <span *ngFor="let item of menuItems; let i = index">
-                    <a *ngIf="i <= 2" [routerLink]="[item.url]" class="w-nav-link nav-link" [innerHtml]="item.title"></a>
-                </span>
-            </div>
-            <div class="col-sm-2">
-                <!--<img class="menu-logo" src="/assets/img/startseite/cupcake-footer.png">-->
-            </div>
-            <div class="text-xs-left col-sm-5">
-                <span *ngFor="let item of menuItems; let i = index">
-                    <a *ngIf="i > 2" [routerLink]="[item.url]" class="w-nav-link nav-link" [innerHtml]="item.title"></a>
-                </span> 
-            </div>
-        </div>
     </nav>
 </div>
