@@ -1,3 +1,37 @@
+# ultimate-angular2-webpack-stack
+
+What do we need?
+- Updated System
+```
+npm i -g webpack webpack-dev-server karma protractor typescript npm rimraf 
+```
+
+- Angular2 Webpack Starter / Angular CLI
+- Bootstrap 4 Integration
+- Default Modules
+```
+npm i --save-dev gitlab-webhooks 
+
+npm i --save @ngrx/core @ngrx/store @ngrx/effects
+npm i --save-dev @ngrx/store-devtools @ngrx/store-log-monitor
+
+npm i --save node-sass sass-loader bootstrap@4.0.0-alpha.2 bootstrap-sass bootstrap-loader@1.1.0 lodash jquery tether resolve-url resolve-url-loader web-animations-js
+npm i --save-dev postcss-loader css-loader to-string-loader postcss-cssnext rucksack-css lost precss autoprefixer
+```
+
+Noch paar coole Sachen
+```
+npm i --save angulartics2 font-awesome slick-carousel
+```
+
+Was brauchen wir noch?
+Wordpress PageLoader
+SD-Menu
+Templates
+
+
+
+
 <p align="center">
   <a href="http://courses.angularclass.com/courses/angular-2-fundamentals?utm_source=github-angular2-webpack-starter&utm_medium=open-source&utm_campaign=webpackstarter" target="_blank">
     <img width="438" alt="Angular 2 Fundamentals" src="https://cloud.githubusercontent.com/assets/1016365/17200649/085798c6-543c-11e6-8ad0-2484f0641624.png">
