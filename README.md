@@ -12,7 +12,7 @@ npm i -g webpack webpack-dev-server karma protractor typescript npm rimraf
 ```
 npm i --save-dev gitlab-webhooks 
 
-npm i --save @ngrx/store @ngrx/effects
+npm i --save @ngrx/core @ngrx/store @ngrx/effects
 npm i --save-dev @ngrx/store-devtools @ngrx/store-log-monitor
 
 npm i --save node-sass sass-loader bootstrap@4.0.0-alpha.2 bootstrap-sass bootstrap-loader@1.1.0 lodash jquery tether resolve-url resolve-url-loader web-animations-js
