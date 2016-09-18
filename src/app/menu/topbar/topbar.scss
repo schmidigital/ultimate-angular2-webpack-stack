@@ -1,0 +1,43 @@
+@import '../../theme/variables';
+
+//colors
+$white_70: rgba(255, 255, 255, 0.7);
+$color_disco_approx: #871758;
+$color_medium_red_violet_approx: #c13287;
+
+.nav-container {
+	position: fixed;
+	width: 100%;
+	background-color: $white_70;
+    top: 0;
+    left: 0;
+    transition: transform .5s;
+    &.hidden {
+        transform: translateY(-100%)
+    }
+    .navbar-brand img {
+        height: 30px;
+    }
+    .nav-bg {
+        width: 100%;
+        height: auto;
+    }
+    .nav-wrap { 
+        a {
+            color: $color_disco_approx;
+            text-decoration: none;
+            padding: 8px 8px 8px 0;
+            font-size: responsive 0.85rem 1.2rem;
+            font-range: map-get($grid-breakpoints, md) map-get($grid-breakpoints, xl) ;
+            text-align: left;
+            text-transform: uppercase;
+            &:active {
+                color: $color_medium_red_violet_approx;
+                text-decoration: none;
+            }
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+web:
+  restart: 'always'
+  image: 'nginx'
+  volumes:
+    - './:/www'
+    - './config/nginx/sites.conf:/etc/nginx/conf.d/default.conf'
+    - './config/nginx/nginx.conf:/etc/nginx/nginx.conf'
+  command: 'nginx -g "daemon off;"'
+  environment:
+    LETSENCRYPT_HOST: 'jasis.schmid.digital'
+    LETSENCRYPT_EMAIL: 'info@schmidigital.de'
+    VIRTUAL_HOST: 'jasis.schmid.digital'
+
+webhook:
+  restart: 'always'
+  image: 'schmidigital/angular2-webpack-docker'
+  volumes:
+    - './:/site'
+    - './config/.ssh:/root/.ssh'
+  working_dir: '/site'
+  environment:
+    LETSENCRYPT_HOST: 'hook.jasis.schmid.digital'
+    LETSENCRYPT_EMAIL: 'info@schmidigital.de'
+    VIRTUAL_HOST: 'hook.jasis.schmid.digital'
+    NODE_ENV: 'development'
+    VIRTUAL_PORT: '3000'
+  command: 'node gitlab-webhooks.js'

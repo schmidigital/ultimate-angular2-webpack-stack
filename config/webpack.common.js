@@ -5,6 +5,12 @@
 const webpack = require('webpack');
 const helpers = require('./helpers');
 
+const precss = require('precss');
+const autoprefixer = require('autoprefixer');
+const rucksack = require('rucksack-css');
+const lost = require('lost');
+
+
 /*
  * Webpack Plugins
  */
@@ -157,7 +163,16 @@ module.exports = function(options) {
          */
         {
           test: /\.css$/,
-          loaders: ['to-string-loader', 'css-loader']
+          loader: 'to-string!css-loader!postcss-loader'
+        },
+
+        { 
+          test: /\.scss$/, 
+          loaders: ['raw', 'postcss', 'sass'] 
+        }, 
+        {
+          test: /\.sass$/,
+          loaders: ['raw', 'postcss', 'sass'] 
         },
 
         /* Raw loader support for *.html
@@ -176,7 +191,13 @@ module.exports = function(options) {
         {
           test: /\.(jpg|png|gif)$/,
           loader: 'file'
+        },
+
+        { 
+          test: /bootstrap\/dist\/js\/umd\//, 
+          loader: 'imports?jQuery=jquery' 
         }
+
       ],
 
       postLoaders: [
@@ -191,6 +212,11 @@ module.exports = function(options) {
         }
       ]
     },
+
+    postcss: () => {
+      return [precss, autoprefixer, rucksack, lost]
+    },
+
 
     /*
      * Add additional plugins to the compiler.
@@ -211,6 +237,17 @@ module.exports = function(options) {
        * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
        */
       new ForkCheckerPlugin(),
+
+      new webpack.ProvidePlugin({
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+        $: 'jquery',
+        'window.$': 'jquery',
+        'window.Tether': 'tether',
+        Tether: 'tether',
+        Shuffle: 'shufflejs/dist/shuffle.js'
+      }),
+
       /*
        * Plugin: CommonsChunkPlugin
        * Description: Shares common code between the pages.

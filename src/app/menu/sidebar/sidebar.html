@@ -1,0 +1,9 @@
+<div class="nav-bg"></div>
+<div class="nav-wrap row">
+    <ul>
+        <li>
+            <a *ngFor="let item of menuItems" [routerLink]="[item.url]" class="nav-link" [innerHtml]="item.title"></a>
+        </li>
+    </ul>
+    <img class="menu-logo" src="/assets/img/startseite/cupcake-footer.png">
+</div>

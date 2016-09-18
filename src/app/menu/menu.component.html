@@ -1,0 +1,15 @@
+<div id="st-container" [ngClass]="{'st-menu-open': isOpen$ | async }" class="st-container st-effect-9 ">
+	<sd-topbar></sd-topbar>
+	<nav class="st-menu st-effect-9" id="menu-1">
+		<sd-sidebar class="hidden-md-up"></sd-sidebar>
+	</nav>
+	<!-- content push wrapper -->
+	<div class="st-pusher" (click)="closeMenu()">
+		<!--TODO iPhone Overflow Scroll deaktivieren https://git.schmid.digital/lts-buehler/lts-ship-wordpress-angular/issues/59 -->
+		<div id="st-content" class="st-content"><!-- this is the wrapper for the content -->
+			<div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
+        <ng-content></ng-content>
+      </div><!-- /st-content-inner -->
+		</div><!-- /st-content -->
+	</div><!-- /st-pusher -->
+</div><!-- /st-container -->

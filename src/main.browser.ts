@@ -10,6 +10,9 @@ import { bootloader } from '@angularclass/hmr';
  */
 import { AppModule } from './app';
 
+import 'bootstrap';
+import 'tether';
+
 /*
  * Bootstrap our Angular app with a top level NgModule
  */

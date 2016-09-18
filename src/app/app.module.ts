@@ -4,6 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import { Title } from '@angular/platform-browser';
+
+import { Store, StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
+import { APP_REDUCERS } from './app.reducers';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -14,10 +20,12 @@ import { ROUTES } from './app.routes';
 import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InteralStateType } from './app.service';
-import { Home } from './home';
-import { About } from './about';
-import { NoContent } from './no-content';
-import { XLarge } from './home/x-large';
+
+import { MenuModule } from './menu';
+import { PageLoader } from './page-loader';
+import { PAGE_SERVICE_PROVIDERS, MENU_SERVICE_PROVIDERS } from './services';
+// import { Home, Page } from './pages';
+// import { Footer } from './layout';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -38,20 +46,36 @@ type StoreType = {
   bootstrap: [ App ],
   declarations: [
     App,
-    About,
-    Home,
-    NoContent,
-    XLarge
+    PageLoader,
+    // Home,
+    // Page,
+    // Footer
+  ],
+  entryComponents: [
+    // Home,
+    // Page
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true })
+    RouterModule.forRoot(ROUTES),
+    StoreLogMonitorModule,
+    StoreModule.provideStore(APP_REDUCERS),
+    StoreDevtoolsModule.instrumentStore({
+      monitor: useLogMonitor({
+        visible: false,
+        position: 'left'
+      })
+    }),
+    MenuModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    PAGE_SERVICE_PROVIDERS,
+    MENU_SERVICE_PROVIDERS,
+    Title
   ]
 })
 export class AppModule {
